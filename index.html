@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ikigai PIE</title>
+    <style>
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f5f3f2, #e6e3e1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: beige;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #4b4947;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .image-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .image-card {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            background: #fff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .image-card:hover img {
+            transform: scale(1.1);
+        }
+        .image-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        .details-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+        .details-modal.open {
+            display: flex;
+        }
+        .details-container {
+            width: 90%;
+            max-width: 700px;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(50px);
+            animation: slideIn 0.6s ease forwards;
+        }
+        .details-header {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(to bottom, #639a67, #4a8051);
+        }
+        .details-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .details-header .back-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #639a67;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .details-header .back-btn:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+        .details-content {
+            padding: 30px;
+            text-align: left;
+        }
+        .details-content h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #639a67;
+            margin-bottom: 15px;
+        }
+        .details-content p {
+            font-size: 18px;
+            color: #4b4947;
+            line-height: 1.8;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(80px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        /* Add the gradient animation to the entire page */
+        .gradient-background {
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            background: linear-gradient(45deg, #617e63, #e6e3e1); /* Initial gradient colors */
+            background-size: 400% 400%; /* Scale the gradient for animation effect */
+            animation: gradientAnimation 8s ease infinite; /* Infinite looping animation */
+        }
+
+        /* Define the animation for the gradient */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%; /* Start position */
+            }
+            50% {
+                background-position: 100% 50%; /* Middle position */
+            }
+            100% {
+                background-position: 0% 50%; /* End position */
+            }
+        }
+
+        .content {
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        p {
+            font-size: 18px;
+            text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+
+
+  /* Header */
+  .header {
+            text-align: center;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: beige;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+         /* Button to start the quiz */
+         .start-button {
+            background: #122b13;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .start-button:hover {
+            background: #29492a;
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-background">
+    <h1>Ikigai: The Art of Living</h1>
+    <p class="subtitle">Booklet IKIGAI - Séance 3 : Cahier personnel du STAGIAIRE.</p>
+    <div class="image-grid">
+        <div class="image-card" onclick="showDetails('passion.jpg', 'Passion' , '--Ce que vous aimez-- La passion se trouve au cœur de Ikigai représentant ce que vous aimez et dans quoi vous excellez. Elle alimente la créativité, la joie et une sensation état de flow où le temps semble disparaître. ')">
+            <img src="passion.jpg" alt="Passion">
+        </div>
+        <div class="image-card" onclick="showDetails('career.jpg', 'Vocation', '--Ce dans quoi vous êtes doué-- La vocation est votre contribution au monde. Elle combine vos talents avec les besoins de la société, rendant votre travail significatif et porteur impact.')">
+            <img src="career.jpg" alt="Vocation">
+        </div>
+        <div class="image-card" onclick="showDetails('Talent.jpg', 'Profession', '--Ce pour quoi vous pouvez être payé-- La profession représente ce pour quoi vous êtes rémunéré. Elle reflète votre expertise et votre capacité à créer de la valeur tout en assurant votre sécurité financière.')">
+            <img src="Talent.jpg" alt="Profession">
+        </div>
+        <div class="image-card" onclick="showDetails('mission.jpg', 'Mission', '--Ce dont le monde a besoin--La mission ancre votre Ikigai en alignant ce que vous aimez avec ce dont le monde a besoin. Elle vous motive à mener une vie empreinte de sens et de but.')">
+            <img src="mission.jpg" alt="Mission">
+        </div>
+    </div>
+
+    <div class="details-modal" id="detailsModal">
+        <div class="details-container">
+            <div class="details-header">
+                <button class="back-btn" onclick="closeDetails()">←</button>
+                <img id="detailsImage" src="" alt="Detail">
+            </div>
+            <div class="details-content">
+                <h2 id="detailsTitle"></h2>
+                <p id="detailsDescription"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header">
+    <h1>Explorez Votre IKIGAI</h1>
+    <p>
+        L'IKIGAI est une méthode japonaise pour trouver votre raison d'être. 
+        Il s'agit de la croisée des chemins entre <strong>ce que vous aimez</strong>, <strong>ce dans quoi vous excellez</strong>, 
+        <strong>ce dont le monde a besoin</strong>, et <strong>ce pour quoi vous êtes payé</strong>. C'est ici que votre vie trouve son but ultime.
+       
+            <button class="start-button" onclick="startQuiz()">Commencer le Quiz</button>
+       
+    </p>
+</div>
+
+    <script>
+        const detailsModal = document.getElementById('detailsModal');
+        const detailsImage = document.getElementById('detailsImage');
+        const detailsTitle = document.getElementById('detailsTitle');
+        const detailsDescription = document.getElementById('detailsDescription');
+
+        function showDetails(imageSrc, title, description) {
+            detailsImage.src = imageSrc;
+            detailsTitle.textContent = title;
+            detailsDescription.textContent = description;
+            detailsModal.classList.add('open');
+        }
+
+        function closeDetails() {
+            detailsModal.classList.remove('open');
+        }
+    </script>
+      <script>
+        // Redirect to quiz page
+        function startQuiz() {
+            window.location.href = "quiz.html";
+        }
+    </script>
+     <!-- Footer -->
+     <div class="footer">
+        <p>Rejoignez-nous pour en apprendre davantage sur l'IKIGAI et commencez à construire votre avenir dès aujourd'hui. 
+            <a href="mailto:dohaabdouni1213@gmail.com" style="color: blanchedalmond; text-decoration: underline rgb(1, 44, 1);">Rejoindre mon e-mail</a>
+    </div>
+</body>
+</html>
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+

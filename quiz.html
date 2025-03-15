@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - IKIGAI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f2f3ee, #3f443b);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .quiz-container {
+            margin-top: 30px;
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .logo-container img {
+            width: 120px;
+            height: auto;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #073f09;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+         h2 {
+            color: #073f09;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .input-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-label {
+            margin-right: 10px;
+            font-weight: bold;
+            min-width: 50px;
+        }
+
+        input, textarea {
+            flex-grow: 1;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 20px;
+            background: beige;
+            color: rgb(33, 44, 33);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: rgb(33, 44, 33);
+            color: beige;
+        }
+        h5{
+            color: red;
+        }
+
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #f2f3ee, #3f443b);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #073f09;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Question Block */
+.question-block {
+    margin-bottom: 30px;
+    text-align: left;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Areas */
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+/* Checkbox Inputs */
+.checkbox-inputs .checkbox-row {
+    margin-top: 15px;
+}
+
+.checkbox-row textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto; /* Makes table scrollable horizontally if it overflows */
+}
+
+.causes-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.causes-table thead tr {
+    background-color: #e0f7fa;
+    color: #00796b;
+    font-weight: bold;
+}
+
+.causes-table th,
+.causes-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.causes-table th {
+    text-align: center;
+}
+
+.center-cell {
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2); /* Increases checkbox size for better visibility */
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+    .causes-table th, .causes-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .checkbox-row textarea {
+        font-size: 12px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+}
+
+body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f2f3ee, #3f443b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            padding: 30px;
+            max-width: 500px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background: linear-gradient(to right, #00796b, #004d40);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .success-icon {
+            font-size: 50px;
+            color: #4caf50;
+            animation: bounce 2s infinite;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Bounce animation for the icon */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+    </style>
+</head>
+<body>
+  <!-- Welcome Page -->
+ <div id="welcome-page" class="quiz-container">
+    <div class="logo-container">
+        <img src="image.jpg" alt="Ikigai Logo">
+    </div>
+    <div class="title">Votre Quiz IKIGAI</div>
+    <p>
+        Bienvenue dans votre Quiz IKIGAI. Répondez aux questions pour découvrir davantage sur vous-même et explorer les dimensions de votre vie.
+    </p>
+    <h3 class="section-title" style="justify-content: center;" >Prêt ? On démarre ?</h3>
+    <p class="arabic-text" style="color: rgb(33, 149, 10);">
+        باسم الله<br>على بركة الله
+    </p>
+    <button onclick="showPage('quiz-page')">Commencer</button>
+</div>
+
+    <!-- Quiz Page -->
+    <div id="quiz-page" class="quiz-container hidden">
+        <form method="post" action="page1.php">
+            <section id="page3" class="page">
+                <div class="question-block">
+                    <h3 class="question-title">1. Chacun écrit sur son cahier les 3 mots (tags) que vous voulez que les gens retiennent de vous :</h3>
+                    <div class="answer-space">
+                        <div class="input-row">
+                            <span class="input-label">1.1.</span>
+                            <input type="text" name="A1" placeholder="Votre réponse...">
+                        </div>
+                        <div class="input-row">
+                            <span class="input-label">1.2.</span>
+                            <input type="text" name="A2" placeholder="Votre réponse...">
+                        </div>
+                        <div class="input-row">
+                            <span class="input-label">1.3.</span>
+                            <input type="text" name="A3" placeholder="Votre réponse...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-block">
+                    <h3 class="question-title">2. Quelles sont les actions du quotidien que vous faites aujourd'hui qui vous permettent de justifier cela :</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mon Tag</th>
+                                <th>Action quotidienne</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1-</td>
+                                <td><textarea name="B1" placeholder="Décrivez vos actions..."></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>2-</td>
+                                <td><textarea name="B2" placeholder="Décrivez vos actions..."></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>3-</td>
+                                <td><textarea name="B3" placeholder="Décrivez vos actions..."></textarea></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="question-block">
+                    <h3 class="question-title">3. Êtes-vous une personne de confiance ? Si oui, pourquoi ? Si non, pourquoi ?</h3>
+                    <textarea class="full-textarea" name="C1" placeholder="Votre réponse..."></textarea>
+                </div>
+            </section>
+        </form>
+        <button onclick="showPage('page4')">Suivant</button>
+    </div>
+
+    <!-- Page 4 -->
+    <div id="page4" class="quiz-container hidden">
+        <section id="page4" class="page">
+            <div class="question-block">
+                <h3 class="question-title">4. Quels sont les mots qu'ont écrit vos collègues :</h3>
+                <div class="grid-inputs">
+                    <div class="input-row">
+                        <span class="input-label">4.1.</span>
+                        <input type="text" name="D1" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.2.</span>
+                        <input type="text" name="D2" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.3.</span>
+                        <input type="text" name="D3" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.4.</span>
+                        <input type="text" name="D4" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.5.</span>
+                        <input type="text" name="D5" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.6.</span>
+                        <input type="text" name="D6" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.7.</span>
+                        <input type="text" name="D7" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.8.</span>
+                        <input type="text" name="D8" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.9.</span>
+                        <input type="text" name="D9" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.10.</span>
+                        <input type="text" name="D10" placeholder="Mot écrit par un collègue...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.11.</span>
+                        <input type="text" name="D11" placeholder="Mot écrit par un collègue...">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <button onclick="showPage('page5')">Suivant</button>
+    </div>
+    
+<!-- Page 5 -->
+ <div id="page5" class="quiz-container hidden">
+    <div class="question-block">
+        <h3 class="question-title">Quels sont les points communs ? Les différences ?</h3>
+        <div class="two-columns">
+            <div>
+                <h4 class="subtitle">Points communs :</h4>
+                <textarea name="E1" placeholder="Listez les points communs..."></textarea>
+            </div>
+            <div>
+                <h4 class="subtitle">Différences :</h4>
+                <textarea name="F1" placeholder="Listez les différences..."></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="question-block">
+        <h3 class="question-title">Comment construire votre réputation autour des mots clés que vous voulez ?</h3>
+        <p class="italic-text">
+            Même si vous n'êtes pas encore aujourd'hui ce que vous voulez devenir.
+        </p>
+        <textarea name="G1" placeholder="Votre réponse..."></textarea>
+    </div>
+    <div class="question-block">
+        <h3 class="question-title">Que signifie "être exemplaire" ?</h3>
+        <textarea name="H1" placeholder="Votre définition..."></textarea>
+    </div>
+    <div class="info-box">
+        <p>
+            <h5>Remarque :</h5>
+        <fieldset>
+            Quand on admire une personne exemplaire, il est crucial d'analyser les choix, les défis et les valeurs qui la définissent, car c'est à travers ces éléments que l'on peut comprendre pourquoi elle inspire et comment ses actions résonnent avec nos propres aspirations.
+        </fieldset>
+        </p>
+    </div>
+    <button onclick="showPage('page6')">Suivant</button>
+</div>      
+<!-- Page 5 -->
+<div id="page6" class="quiz-container hidden">
+    <section id="page6" class="page">
+        <div class="question-block">
+            <h3 class="question-title">Comment pouvez-vous devenir exemplaire ?</h3>
+            <textarea name="I1" class="full-textarea" placeholder="Décrivez votre plan d'action..." style="width: 100%; height: 100px;"></textarea>
+        </div>
+
+        <div class="question-block">
+            <h3 class="question-title">Que devez-vous apprendre pour devenir exemplaire ?</h3>
+            <div>
+                <div class="input-row">
+                    <span class="input-label">1.</span>
+                    <textarea name="J1" placeholder="Compétence à acquérir..." style="flex-grow: 1; width: calc(100% - 30px);"></textarea>
+                </div>
+                <div class="input-row">
+                    <span class="input-label">2.</span>
+                    <textarea name="J2" placeholder="Compétence à acquérir..." style="flex-grow: 1; width: calc(100% - 30px);"></textarea>
+                </div>
+                <div class="input-row">
+                    <span class="input-label">3.</span>
+                    <textarea name="J3" placeholder="Compétence à acquérir..." style="flex-grow: 1; width: calc(100% - 30px);"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip-box" style="margin-top: 20px; padding: 10px; background: #f8f9fa; border-left: 5px solid #073f09; color: #555;">
+            <p>
+             <h5>Remarque :</h5>
+            Prenez conscience que votre développement personnel repose autant sur l'acquisition de compétences spécifiques que sur l'adoption d'attitudes positives et de valeurs fortes, car c'est l'équilibre entre savoir-faire et savoir-être qui vous permettra d'atteindre vos objectifs.
+            </p>
+        </div>
+    </section>
+    <button onclick="showPage('page7')" style="margin-top: 20px;">Suivant</button>
+</div>
+
+ <!-- Page 7 -->
+<div id="page7" class="quiz-container hidden">
+    <section id="page7" class="page">
+            <div class="question-block">
+                <h3 class="section-title text-center">LES VALEURS</h3>
+                <p>
+                    Réflexion individuelle : Quelles sont vos 5 valeurs clés avec lesquelles vous vivez au quotidien ? 
+                    Notez ces valeurs sur votre cahier
+                </p>
+                <div class="numbered-inputs">
+                    <div class="input-row">
+                        <span class="input-label">1.</span>
+                        <input type="text" name="K1" placeholder="Votre valeur...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">2.</span>
+                        <input type="text" name="K2" placeholder="Votre valeur...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">3.</span>
+                        <input type="text" name="K3" placeholder="Votre valeur...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.</span>
+                        <input type="text" name="K4" placeholder="Votre valeur...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">5.</span>
+                        <input type="text" name="K5" placeholder="Votre valeur...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <h3 class="question-title">Demandez à vos collègues de faire une liste des 5 valeurs qui vous caractérisent</h3>
+                <div class="numbered-inputs">
+                    <div class="input-row">
+                        <span class="input-label">1.</span>
+                        <input type="text" name="L1" placeholder="Valeur identifiée par vos collègues...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">2.</span>
+                        <input type="text" name="L2" placeholder="Valeur identifiée par vos collègues...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">3.</span>
+                        <input type="text" name="L3" placeholder="Valeur identifiée par vos collègues...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">4.</span>
+                        <input type="text" name="L4" placeholder="Valeur identifiée par vos collègues...">
+                    </div>
+                    <div class="input-row">
+                        <span class="input-label">5.</span>
+                        <input type="text" name="L5" placeholder="Valeur identifiée par vos collègues...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <h3 class="question-title">Débrief collectif en groupe sur les écarts ou les similarités que vous avez trouvé</h3>
+                <p>
+                    Écrivez vos réflexions personnelles sur les écarts constatés et les actions à faire dans les cas d'écart.
+                </p>
+                <textarea class="full-textarea" placeholder="Vos réflexions..."></textarea>
+            </div>
+    </section>
+    <button onclick="showPage('page8')" style="margin-top: 20px;">Suivant</button>
+</div>
+  <!-- Page 8 -->
+  <div id="page8" class="quiz-container hidden">
+    <section id="page8" class="page">
+            <div class="question-block">
+                <h3 class="section-title text-center">Ce que nous apprenons</h3>
+                
+                <div class="learning-box">
+                    <p>
+                        Nos valeurs nous bâtissent, nous construisent et déterminent qui nous sommes. 
+                        Nos valeurs sont ce qui reste constant, quelles que soient les circonstances.
+                    </p>
+                    
+                    <p>
+                        Si je dis que ma valeur c'est l'honnêteté et que face à une situation compliquée et difficile, 
+                        je donne un pourboire, je mens, je fais une mauvaise action car "je n'avais pas le choix", 
+                        alors l'honnêteté n'est pas une de mes valeurs.
+                    </p>
+                    
+                    <p>
+                        Votre valeur c'est ce qui reste quand vous êtes face à des choix difficiles 
+                        et que vous n'avez pas d'autres choix que d'assumer votre valeur ou d'y renoncer.
+                    </p>
+                    
+                    <p class="bold-text">
+                        C'est dans ces cas, que nous reconnaissons les leaders.
+                    </p>
+                </div>
+            </div>
+    </section>
+    <button onclick="showPage('page9')" style="margin-top: 20px;">Suivant</button>
+</div>  
+<!-- Page 9 -->
+ 
+<div id="page9" class="quiz-container hidden">
+    <section id="page9" class="page">
+            <div class="question-block">
+        <h3 class="section-title text-center">LES CAUSES</h3>
+        <p>
+            Y-a-t-il des causes qui te tiennent à cœur sur lesquelles tu veux contribuer ?
+        </p>
+        <div class="checkbox-inputs">
+            <div class="checkbox-row">
+                <textarea name="N1" placeholder="Cause qui vous tient à cœur..." style="width: 100%; height: 60px;"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="question-block">
+        <h3 class="question-title">Quelles sont les actions concrètes que tu fais aujourd'hui qui prouvent que ces causes te tiennent à cœur ?</h3>
+        <div class="table-container">
+            <table class="causes-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="padding: 10px;">La cause qui me tient à cœur</th>
+                        <th style="padding: 10px;">Actions concrètes</th>
+                        <th style="padding: 10px;">Est-ce que je lis des livres/articles sur le sujet ?</th>
+                        <th style="padding: 10px;">Est-ce que je suis au courant de l'actualité ?</th>
+                        <th style="padding: 10px;">Est-ce que je suis engagé dans des groupes/associations… sur la thématique ?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input name="O1" type="text" placeholder="Cause..." style="width: 100%;"></td>
+                        <td><textarea name="O2" placeholder="Actions..." style="width: 100%; height: 60px;"></textarea></td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="O3" type="checkbox">
+                        </td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="O4" type="checkbox">
+                        </td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="O5" type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input name="P1" type="text" placeholder="Cause..." style="width: 100%;"></td>
+                        <td><textarea name="P2" placeholder="Actions..." style="width: 100%; height: 60px;"></textarea></td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="P3" type="checkbox">
+                        </td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="P4" type="checkbox">
+                        </td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="P5" type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input name="Q1" type="text" placeholder="Cause..." style="width: 100%;"></td>
+                        <td><textarea name="Q2" placeholder="Actions..." style="width: 100%; height: 60px;"></textarea></td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="Q3" type="checkbox">
+                        </td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="Q4" type="checkbox">
+                        </td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="Q5" type="checkbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input name="S1" type="text" placeholder="Cause..." style="width: 100%;"></td>
+                        <td><textarea name="S2" placeholder="Actions..." style="width: 100%; height: 60px;"></textarea></td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="S3" type="checkbox">
+                        </td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="S4" type="checkbox">
+                        </td>
+                        <td class="center-cell" style="text-align: center;">
+                            <input name="S5" type="checkbox">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<button onclick="showPage('page10')" style="margin-top: 20px;">Suivant</button>
+</div>
+  <!-- Page 10 -->
+  <div id="page10" class="quiz-container hidden">
+    <section id="page10" class="page">
+            <div class="question-block">
+        <h3 class="question-title">Si tu ne fais pas d'actions aujourd'hui, souhaiterais-tu t'engager dans une cause pour le mois prochain ?</h3>
+        <textarea name="T1" class="full-textarea" placeholder="Décrivez votre engagement futur..."></textarea>
+    </div>
+
+    <div class="question-block">
+        <h3 class="section-title text-center">Ce que nous apprenons</h3>
+        
+        <div class="learning-box">
+            <p class="medium-text">
+                Etre engagé, ce ne sont pas des paroles, ce sont des actions concrètes sur le terrain.
+            </p>
+            
+            <p>Nous nous engageons quand :</p>
+            <ul>
+                <li>Nous quittons la zone de la parole (donner son point de vue) pour entrer dans l'action.</li>
+                <li>Nous commençons à lire, à nous documenter sur un sujet (pas une recherche unique sur Wikipedia ou une vidéo Youtube de 5 min mais plutôt des recherches constantes sur le sujet).</li>
+                <li>Nous nous engageons sur le terrain via des actions : changer son comportement personnel.</li>
+                <li>Nous nous engageons sur le terrain en rejoignant des collectifs qui construisent sur les questions (Exemple : Bonheur au travail, Artisanat, développement durable, entrepreneuriat social, …).</li>
+            </ul>
+            
+            <p>
+                <u>Exemple :</u> on peut dire : je souhaite m'engager en faveur de l'artisanat au Maroc. 
+                Mais je ne le lis pas sur l'artisanat, je n'achète pas de l'artisanat, 
+                je ne connais pas d'artisans alors cela ne s'appelle pas de l'engagement dans une cause.
+            </p>
+        </div>
+    </div>
+    <button onclick="showPage('end-page')" style="margin-top: 20px;">Terminer</button>
+</div>
+</section>
+</form>
+</div>
+    <!-- End Page -->
+    <div id="end-page" class="quiz-container hidden">
+            <div class="success-icon">✔️</div>
+            <h3>Merci d'avoir complété le Quiz IKIGAI !</h3>
+            <p>Vos réponses ont été enregistrées. Passez une excellente journée !</p>
+
+       
+        <button onclick="showPage('welcome-page')">Recommencer</button>
+    </div>
+    <script>
+        function restartQuiz() {
+            // Action to restart the quiz
+            alert("Le quiz va être recommencé !");
+            // You can redirect to the start of your quiz
+            window.location.href = "index.html"; // Replace with your starting page
+        }
+    </script>
+
+      <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.quiz-container');
+            pages.forEach(page => page.classList.add('hidden'));
+
+            // Show the specified page
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
